@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pz-db
+  namespace: data
+spec:
+  instances: 1
+  storage:
+    size: 10Gi
+  enableSuperuserAccess: true
+  bootstrap:
+    initdb:
+      database: pagerzero
+      owner: pagerzero
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS vector;
